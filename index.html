@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Zi Wang (Sara) | Intelligent & Sustainable Manufacturing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --beige: #f5f0e8;
+    --beige-dark: #ede6d6;
+    --beige-mid: #f0ebe0;
+    --text: #2c2a27;
+    --text-light: #6b6560;
+
+    /* Process stage colours */
+    --design:    #7b9e87;  /* sage green – product design */
+    --digital:   #5b7fa6;  /* steel blue – digital twin / data */
+    --assembly:  #c47f4a;  /* warm amber – manufacturing / assembly */
+    --optimise:  #9b6ea0;  /* soft violet – optimisation / AI-ML */
+    --sustain:   #4fa89a;  /* teal – sustainability / circularity */
+    --collab:    #c4724a;  /* terracotta – industry collaboration */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--beige);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--beige-dark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 60px;
+  }
+  .nav-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-light); letter-spacing: 0.04em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 5% 60px;
+    background:
+      linear-gradient(to right, rgba(245,240,232,0.88) 0%, rgba(245,240,232,0.65) 30%, rgba(245,240,232,0.0) 52%),
+      url('src/IMG_1418.JPG') center / cover no-repeat;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg { display: none; }
+  .hero-layout {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4rem;
+    width: 100%;
+  }
+  .hero-content { position: relative; flex: 1; max-width: 620px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--sustain); border: 1.5px solid var(--sustain);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-size: 1.05rem; font-weight: 400; color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title strong { color: var(--text); font-weight: 600; }
+  .hero-mission {
+    font-size: 1.15rem; font-weight: 300; line-height: 1.8;
+    max-width: 640px; margin-bottom: 2rem;
+    border-left: 3px solid var(--assembly); padding-left: 1.2rem;
+  }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .pill {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px;
+    background: white; border: 1.5px solid;
+  }
+  .pill-design   { color: var(--design);   border-color: var(--design); }
+  .pill-digital  { color: var(--digital);  border-color: var(--digital); }
+  .pill-assembly { color: var(--assembly); border-color: var(--assembly); }
+  .pill-optimise { color: var(--optimise); border-color: var(--optimise); }
+  .pill-sustain  { color: var(--sustain);  border-color: var(--sustain); }
+  .pill-collab   { color: var(--collab);   border-color: var(--collab); }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 28px; border-radius: 4px;
+    font-size: 0.88rem; font-weight: 600; text-decoration: none; letter-spacing: 0.03em;
+    transition: all .2s;
+  }
+  .btn-primary { background: var(--text); color: var(--beige); }
+  .btn-primary:hover { background: #444; }
+  .btn-outline { border: 1.5px solid var(--text); color: var(--text); background: transparent; }
+  .btn-outline:hover { background: var(--text); color: var(--beige); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .section-intro {
+    font-size: 1rem; color: var(--text-light);
+    max-width: 680px; margin-bottom: 3rem; line-height: 1.75;
+  }
+
+  /* ── PROCESS PIPELINE ── */
+  #process { background: white; }
+  .pipeline {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    margin-bottom: 3rem;
+  }
+  .stage {
+    flex: 1; min-width: 140px;
+    padding: 1.8rem 1.2rem;
+    position: relative;
+    transition: transform .2s;
+    cursor: default;
+  }
+  .stage:hover { transform: translateY(-4px); z-index: 2; }
+  .stage-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .stage-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; opacity: 0.75; }
+  .stage-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .stage-desc { font-size: 0.78rem; line-height: 1.5; opacity: 0.85; }
+  .stage-arrow {
+    position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; z-index: 3;
+    font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+  }
+
+  .s-design   { background: #eef4f0; color: #3d5c47; }
+  .s-digital  { background: #eaf0f7; color: #2d4f6e; }
+  .s-assembly { background: #faf2e8; color: #7a4d20; }
+  .s-optimise { background: #f4eef7; color: #5c3b65; }
+  .s-sustain  { background: #e8f5f3; color: #24665e; }
+
+  .extend-banner {
+    background: linear-gradient(90deg, #e8f5f3, #eef4f0);
+    border-left: 4px solid var(--sustain);
+    border-radius: 6px; padding: 1rem 1.4rem;
+    font-size: 0.88rem; color: var(--text);
+  }
+  .extend-banner strong { color: var(--sustain); }
+
+  /* ── CAPABILITIES ── */
+  #capabilities { background: var(--beige); }
+  .cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .cap-card {
+    background: white; border-radius: 8px;
+    padding: 1.8rem; border-top: 4px solid;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .cap-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .cap-card.c-design   { border-color: var(--design); }
+  .cap-card.c-digital  { border-color: var(--digital); }
+  .cap-card.c-assembly { border-color: var(--assembly); }
+  .cap-card.c-optimise { border-color: var(--optimise); }
+  .cap-card.c-sustain  { border-color: var(--sustain); }
+  .cap-card.c-collab   { border-color: var(--collab); }
+  .cap-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+  .cap-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .cap-card.c-design .cap-tag   { color: var(--design); }
+  .cap-card.c-digital .cap-tag  { color: var(--digital); }
+  .cap-card.c-assembly .cap-tag { color: var(--assembly); }
+  .cap-card.c-optimise .cap-tag { color: var(--optimise); }
+  .cap-card.c-sustain .cap-tag  { color: var(--sustain); }
+  .cap-card.c-collab .cap-tag   { color: var(--collab); }
+  .cap-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+  .cap-body { font-size: 0.84rem; color: var(--text-light); line-height: 1.65; }
+
+  /* ── IMPACT ── */
+  #impact { background: white; }
+  .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .impact-stat {
+    text-align: center; padding: 1.8rem 1rem;
+    border-radius: 8px; background: var(--beige);
+  }
+  .impact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 700; margin-bottom: 0.3rem;
+  }
+  .impact-label { font-size: 0.82rem; color: var(--text-light); line-height: 1.4; }
+  .impact-cases { display: flex; flex-direction: column; gap: 1rem; }
+  .case-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--beige); border-radius: 8px; padding: 1.2rem 1.4rem;
+    border-left: 4px solid;
+  }
+  .case-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .case-item.ci-assembly { border-color: var(--assembly); } .case-item.ci-assembly .case-dot { background: var(--assembly); }
+  .case-item.ci-sustain  { border-color: var(--sustain); }  .case-item.ci-sustain .case-dot { background: var(--sustain); }
+  .case-item.ci-digital  { border-color: var(--digital); }  .case-item.ci-digital .case-dot { background: var(--digital); }
+  .case-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .case-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+
+  /* ── PUBLICATIONS ── */
+  #publications { background: var(--beige); }
+  .pub-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .pub-tab {
+    padding: 7px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    border: 1.5px solid var(--beige-dark); background: white; cursor: pointer;
+    transition: all .15s; color: var(--text-light);
+  }
+  .pub-tab.active { background: var(--text); color: white; border-color: var(--text); }
+  .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+  .pub-item {
+    background: white; border-radius: 8px; padding: 1.3rem 1.5rem;
+    border-left: 4px solid var(--digital);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .pub-item.conf { border-color: var(--assembly); }
+  .pub-meta { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.3rem; }
+  .pub-title { font-size: 0.9rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.3rem; }
+  .pub-authors { font-size: 0.78rem; color: var(--text-light); }
+  .pub-award { display: inline-block; font-size: 0.7rem; font-weight: 700; color: var(--collab); background: #fdf0ea; padding: 2px 8px; border-radius: 10px; margin-top: 0.4rem; }
+
+  /* ── PARTNERS ── */
+  #partners { background: white; }
+  .partner-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; }
+  .partner-chip {
+    padding: 8px 18px; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 500;
+    background: var(--beige); color: var(--text);
+    border: 1px solid var(--beige-dark);
+  }
+  .collab-invite {
+    background: linear-gradient(135deg, #eef4f0, #eaf0f7);
+    border-radius: 10px; padding: 2.5rem;
+    border: 1.5px solid var(--design);
+  }
+  .collab-invite h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.8rem; }
+  .collab-invite p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; }
+  .collab-areas { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .collab-tag { font-size: 0.78rem; font-weight: 500; padding: 5px 12px; border-radius: 4px; background: white; color: var(--text); border: 1px solid var(--beige-dark); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--beige); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media(max-width:680px){ .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info p { font-size: 0.9rem; color: var(--text-light); line-height: 1.75; margin-bottom: 1.5rem; }
+  .contact-detail { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 1rem; }
+  .contact-detail .icon { font-size: 1rem; margin-top: 2px; }
+  .contact-detail .text { font-size: 0.85rem; color: var(--text); }
+  .contact-detail .text a { color: var(--digital); text-decoration: none; }
+  .contact-detail .text a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 2rem 5%;
+    font-size: 0.78rem;
+  }
+  footer span { color: rgba(255,255,255,0.75); }
+
+  /* ── COLOUR LEGEND ── */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-light); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* pub toggle */
+  .pub-panel { display: none; }
+  .pub-panel.active { display: flex; flex-direction: column; gap: 1rem; }
+
+  /* ── PIPELINE DROPDOWN DETAILS ── */
+  .stage { cursor: pointer; }
+  .stage-hint {
+    font-size: 0.67rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-top: 0.8rem; opacity: 0.5; transition: opacity .15s;
+  }
+  .stage:hover .stage-hint { opacity: 1; }
+  .stage.selected { transform: translateY(-4px) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+
+  .pipeline-detail {
+    display: none;
+    background: white; border-radius: 8px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    border: 1.5px solid var(--beige-dark);
+    gap: 2rem; flex-wrap: wrap;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .pipeline-detail.open { display: flex; animation: panelIn .2s ease; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-cap {
+    flex: 1; min-width: 240px;
+    border-radius: 8px; padding: 1.5rem; border-top: 4px solid;
+    background: var(--beige);
+  }
+  .detail-cap.dc-design   { border-color: var(--design); }
+  .detail-cap.dc-digital  { border-color: var(--digital); }
+  .detail-cap.dc-assembly { border-color: var(--assembly); }
+  .detail-cap.dc-optimise { border-color: var(--optimise); }
+  .detail-cap.dc-sustain  { border-color: var(--sustain); }
+  .detail-cap.dc-collab   { border-color: var(--collab); }
+  .detail-cap-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .detail-cap-tag {
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .detail-cap.dc-design   .detail-cap-tag { color: var(--design); }
+  .detail-cap.dc-digital  .detail-cap-tag { color: var(--digital); }
+  .detail-cap.dc-assembly .detail-cap-tag { color: var(--assembly); }
+  .detail-cap.dc-optimise .detail-cap-tag { color: var(--optimise); }
+  .detail-cap.dc-sustain  .detail-cap-tag { color: var(--sustain); }
+  .detail-cap.dc-collab   .detail-cap-tag { color: var(--collab); }
+  .detail-cap-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .detail-cap-body { font-size: 0.82rem; color: var(--text-light); line-height: 1.65; }
+
+  .detail-case {
+    flex: 1; min-width: 240px;
+    border-radius: 8px; padding: 1.5rem; border-left: 4px solid;
+  }
+  .detail-case.dcs-assembly { background: #faf2e8; border-color: var(--assembly); }
+  .detail-case.dcs-sustain  { background: #e8f5f3; border-color: var(--sustain); }
+  .detail-case.dcs-digital  { background: #eaf0f7; border-color: var(--digital); }
+  .detail-case-label {
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .detail-case.dcs-assembly .detail-case-label { color: var(--assembly); }
+  .detail-case.dcs-sustain  .detail-case-label { color: var(--sustain); }
+  .detail-case.dcs-digital  .detail-case-label { color: var(--digital); }
+  .detail-case.dcs-optimise { background: #f4eef7; border-color: var(--optimise); }
+  .detail-case.dcs-optimise .detail-case-label { color: var(--optimise); }
+  .detail-case-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .detail-case-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.65; }
+  .detail-case-outcome {
+    margin-top: 0.8rem; font-size: 0.8rem; font-weight: 600;
+    padding: 0.5rem 0.8rem; border-radius: 4px; background: rgba(255,255,255,0.6);
+  }
+
+  /* ── IMAGE PLACEHOLDERS ── */
+  .img-placeholder {
+    background: var(--beige-dark);
+    border: 1.5px dashed #c5bbaa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #a09a91;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-photo-placeholder {
+    flex-shrink: 0;
+    width: 300px;
+    height: 360px;
+    border-radius: 12px;
+  }
+  .cap-img-placeholder {
+    width: 100%;
+    height: 110px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+  }
+
+  @media(max-width:960px){
+    .hero-layout { flex-direction: column; gap: 2rem; }
+    .hero-photo-placeholder { width: 100%; max-width: 300px; height: 220px; }
+  }
+  @media(max-width:768px){
+    .pipeline { flex-direction: column; }
+    .stage-arrow { display: none; }
+    nav { padding: 0 4%; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Dr Zi Wang (Sara)</span>
+  <ul class="nav-links">
+    <li><a href="#process">Research</a></li>
+
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#partners">Collaborate</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-layout">
+  <div class="hero-content">
+    <div class="hero-tag">Intelligent &amp; Sustainable Manufacturing</div>
+    <h1 class="hero-name">Dr Zi Wang (Sara) </h1>
+    <p class="hero-title">
+      <strong>Assistant Professor</strong> in Mechanical Design &amp; Solid Mechanics<br>
+      Omnifactory | University of Nottingham | IEEE RAS Member | <span style="white-space:nowrap">MentorTech A.C. Co-Founder</span>
+    </p>
+    <p class="hero-mission">
+      Reshaping aerospace through circular design and intelligent automation by connecting the dots from concept to end-of-life
+    </p>
+    <div class="hero-pills">
+      <span class="pill pill-design">System Design</span>
+      <span class="pill pill-digital">Digital Twin</span>
+      <span class="pill pill-assembly">Smart Manufacturing</span>
+      <span class="pill pill-optimise">Design Optimisation</span>
+      <span class="pill pill-sustain">Circularity</span>
+      <span class="pill pill-collab">Industry Partnerships</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#process" class="btn btn-primary">Explore My Research</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- RESEARCH VISION & CAPABILITIES -->
+<section id="process">
+  <div class="section-label" style="color:var(--sustain)">Research Vision &amp; Capabilities</div>
+  <h2 class="section-title">End-to-End Digital &amp; Sustainable Manufacturing</h2>
+  <p class="section-intro">My research follows the full lifecycle of a product — from the first design decision to what happens after its working life ends. <strong>Click any stage</strong> to explore the capabilities and case studies behind it.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--design)"></div>Design</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--digital)"></div>Digital Twin</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--assembly)"></div>Manufacturing</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--optimise)"></div>AI &amp; Optimisation</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--sustain)"></div>Sustainability</div>
+  </div>
+
+  <div class="pipeline">
+    <div class="stage s-design" onclick="selectStage(0)">
+      <div class="stage-icon">⚙️</div>
+      <div class="stage-label">Stage 1</div>
+      <div class="stage-name">Mechanical &amp; System Design</div>
+      <div class="stage-desc">Design knowledge representation, design for disassembly &amp; circularity, automated design with AI</div>
+      <div class="stage-hint">Explore ▼</div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage s-digital" onclick="selectStage(1)">
+      <div class="stage-icon">🪞</div>
+      <div class="stage-label">Stage 2</div>
+      <div class="stage-name">Digital Twin &amp; Simulation</div>
+      <div class="stage-desc">Photogrammetry-based digital twins, manufacturing process modelling, uncertainty quantification, point cloud processing</div>
+      <div class="stage-hint">Explore ▼</div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage s-assembly" onclick="selectStage(2)">
+      <div class="stage-icon">🏭</div>
+      <div class="stage-label">Stage 3</div>
+      <div class="stage-name">Smart Manufacturing</div>
+      <div class="stage-desc">Prototype development for automated assembly systems, metrology-assisted processes, reconfigurable robotics</div>
+      <div class="stage-hint">Explore ▼</div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage s-optimise" onclick="selectStage(3)">
+      <div class="stage-icon">⚡</div>
+      <div class="stage-label">Stage 4</div>
+      <div class="stage-name">Optimisation &amp; AI</div>
+      <div class="stage-desc">Deep reinforcement learning, metaheuristics, multi-agent swarm learning for factory-level layout</div>
+      <div class="stage-hint">Explore ▼</div>
+      <div class="stage-arrow">→</div>
+    </div>
+    <div class="stage s-sustain" onclick="selectStage(4)">
+      <div class="stage-icon">♻️</div>
+      <div class="stage-label">Stage 5</div>
+      <div class="stage-name">In-Service &amp; End-of-Life</div>
+      <div class="stage-desc">Circularity design, reuse &amp; remanufacturing, disassembly system design — extending the pipeline beyond production</div>
+      <div class="stage-hint">Explore ▼</div>
+    </div>
+  </div>
+
+  <!-- Stage detail panels -->
+  <div id="stage-detail-0" class="pipeline-detail">
+    <div class="detail-cap dc-design">
+      <img src="src/Aeroelasticity.png" alt="Aeroelasticity" style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;mix-blend-mode:multiply;">
+      <div class="detail-cap-tag"> ⚙️ Mechanical Design</div>
+      <div class="detail-cap-title">Intelligent System &amp; Structural Design</div>
+      <div class="detail-cap-body">From aeroelastic simulation of novel wing structures to AI-assisted mechanical design. Combining solid mechanics foundations with modern ML methods to push design capability further and faster.</div>
+    </div>
+    <div class="detail-cap dc-design">
+      <img src="src/KG.png" alt="Knowledge Graph" style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;mix-blend-mode:multiply;">
+      <div class="detail-cap-tag"> 🕸️ Knowledge &amp; Data</div>
+      <div class="detail-cap-title">Knowledge Graph &amp; Data Interoperability</div>
+      <div class="detail-cap-body">Knowledge-graph-based capability representation for manufacturing system design. Breaking data silos and integrating multi-disciplinary expertise across metrology, robotics, and production engineering.</div>
+    </div>
+    <div class="detail-case dcs-sustain">
+      <div class="detail-case-label">Case Study · Aerospace</div>
+      <div class="detail-case-title">Airbus RACER – Box-Wing Aeroelastic Design</div>
+      <div class="detail-case-desc">Developed the first aeroelastic evaluation algorithms for the novel RACER box-wing structure. Proposed a reconfigurable tooling strategy that resolved tolerance, stress, and cost challenges — contributing to the maiden flight in April 2024.</div>
+      <div class="detail-case-outcome" style="color:var(--sustain)">→ 420 km/h cruising speed — 3.2% above target</div>
+    </div>
+  </div>
+
+  <div id="stage-detail-1" class="pipeline-detail">
+    <div class="detail-cap dc-digital">
+      <video src="src/0529.mov" autoplay loop muted playsinline style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;mix-blend-mode:multiply;"></video>
+      <div class="detail-cap-tag"> 🔷 Digital Twin</div>
+      <div class="detail-cap-title"> Factory Digital Twin </div>
+      <div class="detail-cap-body">Real-time digital-physical alignment using photogrammetry and point cloud analysis. Enabling 3D layout optimisation and continuous monitoring across reconfigurable manufacturing cells.</div>
+    </div>
+    <div class="detail-case dcs-digital">
+      <div class="detail-case-label">Case Study · Airbus</div>
+      <div class="detail-case-title">Wingbox – Supervisory Visualisation &amp; Control</div>
+      <div class="detail-case-desc">Designed the real-time supervisory feedback system for fully automated wingbox assembly — rib positioning, riveting, sealing. Successfully deployed at Airbus, integrating multiple systems into a centralised human interface platform.</div>
+      <div class="detail-case-outcome" style="color:var(--digital)">→ Live deployment at Airbus production facility</div>
+    </div>
+  </div>
+
+  <div id="stage-detail-2" class="pipeline-detail">
+    <div class="detail-cap dc-assembly">
+      <video src="src/0530.mov" autoplay loop muted playsinline style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;"></video>
+      <div class="detail-cap-tag"> 🏭 Manufacturing</div>
+      <div class="detail-cap-title">Automated Assembly Systems</div>
+      <div class="detail-cap-body">Design and prototype development of reconfigurable, multi-product smart assembly systems. Demonstrated 50-micron repeatability and sub-15-minute changeover in aerospace applications — outperforming any known state-of-the-art system.</div>
+    </div>
+    <div class="detail-case dcs-assembly">
+      <div class="detail-case-label">Case Study · GKN Aerospace</div>
+      <div class="detail-case-title">Smart Assembly Demonstrator</div>
+      <div class="detail-case-desc">Led technology selection and commissioning for a multi-product smart assembly system. GKN built an in-house replica for further maturity and adoption. Technology progressed from TRL2 to TRL5.</div>
+      <div class="detail-case-outcome" style="color:var(--assembly)">→ 45%+ projected cost saving · 50μm repeatability · &lt;15 min changeover</div>
+    </div>
+    <div class="detail-case dcs-assembly">
+      <div class="detail-case-label">Case Study · Airbus RACER</div>
+      <div class="detail-case-title">Reconfigurable Tooling for Box-Wing Assembly</div>
+      <div class="detail-case-desc">Proposed a reconfigurable tooling strategy for the RACER demonstrator — designed to resolve tolerance, stress, and cost challenges unique to the novel box-wing structure.</div>
+      <div class="detail-case-outcome" style="color:var(--assembly)">→ Tooling strategy adopted for Airbus RACER demonstrator </div>
+    </div>
+  </div>
+
+  <div id="stage-detail-3" class="pipeline-detail">
+    <div class="detail-cap dc-optimise">
+      <img src="src/Multi-Agent2.png" alt="Multi-Agent Layout Optimisation 2" style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:0.5rem;mix-blend-mode:multiply;">
+      <img src="src/Multi-Agent.png" alt="Multi-Agent Layout Optimisation" style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;mix-blend-mode:multiply;">
+      <div class="detail-cap-tag"> ⚡ AI &amp; Optimisation</div>
+      <div class="detail-cap-title"> Dynamic Layout Optimisation</div>
+      <div class="detail-cap-body">Reinforcement learning, metaheuristics, and multi-agent swarm learning applied to dynamic 3D layout. Finds optimal configurations to minimise production time, while enhancing safety and quality .</div>
+    </div>
+    <div class="detail-case dcs-optimise">
+      <video src="src/0531.mov" autoplay loop muted playsinline style="width:100%;height:auto;display:block;border-radius:6px;margin-bottom:1rem;"></video>
+      <div class="detail-case-label">Case Study · Journal of Manufacturing Systems · 2024</div>
+      <div class="detail-case-title">Digital Twin-Based Photogrammetry Layout Optimisation for Reconfigurable Manufacturing</div>
+      <div class="detail-case-desc">Developed a digital twin framework that evaluates photogrammetry camera field-of-view coverage and automatically optimises 3D camera layouts within reconfigurable manufacturing cells. Combining simulation with optimisation algorithms to configure metrology setups across changing production environments — eliminating manual trial-and-error placement.</div>
+    </div>
+  </div>
+
+  <div id="stage-detail-4" class="pipeline-detail" style="justify-content:center;">
+    <div class="detail-cap dc-sustain" style="flex:0 0 calc(50% - 1rem);max-width:calc(50% - 1rem);">
+      <div style="display:flex;gap:0.5rem;margin-bottom:1rem;align-items:stretch;justify-content:center;">
+        <img src="src/AirplaneFillet.png" alt="Airplane Fillet" style="width:40%;object-fit:cover;border-radius:6px;mix-blend-mode:multiply;">
+        <img src="src/cutting-line.png" alt="Cutting Line" style="width:50%;object-fit:contain;border-radius:6px;mix-blend-mode:multiply;">
+      </div>
+      <div class="detail-cap-tag">♻️ Sustainability</div>
+      <div class="detail-cap-title">Design for Circularity</div>
+      <div class="detail-cap-body">Incorporating circularity, reuse, and disassembly as first-class design goals. Developing frameworks for reconfigurable manufacturing systems that support end-of-life recovery and remanufacturing.</div>
+    </div>
+  </div>
+
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="section-label" style="color:var(--collab)">Proven Results</div>
+  <h2 class="section-title">Industrial Impact</h2>
+  <p class="section-intro">Research that doesn't stay on paper. Here is a selection of outcomes that have reached industry — from cost savings and speed records to product launches and maiden flights.</p>
+
+  <div class="impact-grid">
+    <div class="impact-stat">
+      <div class="impact-num" style="color:var(--assembly)">45%+</div>
+      <div class="impact-label">Projected cost saving for GKN Aerospace via smart assembly system</div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-num" style="color:var(--digital)">+/- 50μm</div>
+      <div class="impact-label">Repeatability achieved — best scale-to-precision for multi-product aerospace assembly</div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-num" style="color:var(--optimise)">&lt;15 min</div>
+      <div class="impact-label">Changeover time for reconfigurable multi-product assembly</div>
+    </div>
+  </div>
+
+  <div class="impact-cases">
+    <div class="case-item ci-assembly">
+      <div class="case-dot"></div>
+      <div>
+        <div class="case-title">GKN Aerospace – Smart Assembly Demonstrator</div>
+        <div class="case-desc">Led technology selection and commissioning for a multi-product smart assembly system. GKN built an in-house replica for further maturity and adoption. Technology developed from TRL2 to TRL5 with a minimum 45% projected cost saving.</div>
+      </div>
+    </div>
+    <div class="case-item ci-sustain">
+      <div class="case-dot"></div>
+      <div>
+        <div class="case-title">Airbus RACER Helicopter – Box-Wing Design &amp; Assembly</div>
+        <div class="case-desc">Developed the first aeroelastic evaluation algorithms for the novel RACER box-wing structure. Proposed reconfigurable tooling strategy that resolved tolerance, stress and cost challenges — contributing to maiden flight in April 2024 and a 420 km/h speed record.</div>
+      </div>
+    </div>
+    <div class="case-item ci-digital">
+      <div class="case-dot"></div>
+      <div>
+        <div class="case-title">Airbus Wingbox – Supervisory Visualisation &amp; Control</div>
+        <div class="case-desc">Designed the real-time supervisory feedback system for fully automated wingbox assembly (rib positioning, riveting, sealing). Successfully deployed at Airbus — integrating multiple systems into a centralised human interface platform.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label" style="color:var(--digital)">Academic Output</div>
+  <h2 class="section-title">Selected Publications</h2>
+  <p class="section-intro">Peer-reviewed journal papers, conference papers, and award-winning research spanning digital twins, reconfigurable manufacturing, and intelligent optimisation. For latest publicatiosn, check out my <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://scholar.google.com/citations%3Fuser%3DkW9AHqAAAAAJ%26hl%3Den&ved=2ahUKEwjgwfXN3N6UAxUmQ0EAHbPbKAwQFnoECBsQAQ&usg=AOvVaw1Nj_fwfLQu_2euEN1lZuCo"> Google Scholar </a> Page</p>
+
+  <div class="pub-tabs">
+    <button class="pub-tab active" onclick="showPubs('journals')">Journal Papers</button>
+    <button class="pub-tab" onclick="showPubs('conferences')">Conference Papers</button>
+  </div>
+
+  <div id="journals" class="pub-panel active">
+    <div class="pub-item">
+      <div class="pub-meta">Journal of Manufacturing Systems · 2024</div>
+      <div class="pub-title">Digital Twin Based Photogrammetry Field-of-View Evaluation and 3D Layout Optimisation for Reconfigurable Manufacturing Systems</div>
+      <div class="pub-authors">Wang Z., Wang L., Martinez Arellano G., Griffin J., Sanderson D. &amp; Ratchev S.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-meta">Journal of Intelligent Manufacturing · 2024</div>
+      <div class="pub-title">Multi-agent Cooperative Swarm Learning for Dynamic Layout Optimisation of Reconfigurable Robotic Assembly Cells based on Digital Twin</div>
+      <div class="pub-authors">Wang L., Wang Z., Gumma K., Turner A. &amp; Ratchev S.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-meta">International Journal of Production Research · 2023</div>
+      <div class="pub-title">Deep Digital-twin Dynamic Camera Position Optimisation for the V-STARS Photogrammetry System based on 3D Reconstruction</div>
+      <div class="pub-authors">Wang L., Wang Z.*, Kendall P., Gumma K., Turner A. &amp; Ratchev S.</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-meta">IEEE Transactions on Automation Science and Engineering · 2023</div>
+      <div class="pub-title">Deep Dynamic Layout Optimisation of Photogrammetry Camera Position based on Digital Twin</div>
+      <div class="pub-authors">Wang L., Wang Z.* , Kendall P., Gumma K., Turner A. &amp; Ratchev S.</div>
+    </div>
+  </div>
+
+  <div id="conferences" class="pub-panel">
+    <div class="pub-item conf">
+      <div class="pub-meta">IEEE CASE 2025 · Los Angeles — Special Session Chair</div>
+      <div class="pub-title">A Knowledge-Graph Powered Recommender System for Large-Volume Metrology in Reconfigurable Manufacturing System Design</div>
+      <div class="pub-authors">Wang Z.*, Griffin J., Kendall P., Sanderson D. &amp; Ratchev S.</div>
+    </div>
+    <div class="pub-item conf">
+      <div class="pub-meta">ASME IMECE 2024 · Portland, OR</div>
+      <div class="pub-title">Digital Twin Enabled Layout Optimization Framework for Photogrammetry Cameras in Reconfigurable Robotic Work Cells</div>
+      <div class="pub-authors">Pandurevic S., Wang Z.*, Sanderson D. &amp; Ratchev S.</div>
+      <span class="pub-award">🏆 Best Paper Award – 2nd Runner Up</span>
+    </div>
+    <div class="pub-item conf">
+      <div class="pub-meta">IEEE CASE 2022 · Best Paper</div>
+      <div class="pub-title">An adaptive, repeatable and rapid auto-reconfiguration process in a smart manufacturing system for small box assembly</div>
+      <div class="pub-authors">Wang Z.*, Kendall P., Gumma K., Turner A. &amp; Ratchev S.</div>
+    </div>
+    <div class="pub-item conf">
+      <div class="pub-meta">AIDAA 2017 · Palermo, Italy</div>
+      <div class="pub-title">Efficient numerical methods for aeroelastic analysis of wing-propeller configuration compound helicopters</div>
+      <div class="pub-authors">Wang Z.*, Anobile A. &amp; Popov A. A.</div>
+      <span class="pub-award">🏆 Luigi Pascale Best PhD Paper Award</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-label" style="color:var(--design)">Working With Industry</div>
+  <h2 class="section-title">Partners &amp; Collaborators</h2>
+  <p class="section-intro">My research has been shaped by close collaboration with leading aerospace and manufacturing companies, national research centres, and international academic institutions.</p>
+
+  <div class="partner-grid">
+    <span class="partner-chip"> 🇬🇧 Airbus</span>
+    <span class="partner-chip"> 🇬🇧 GKN Aerospace</span>
+    <span class="partner-chip"> 🇩🇪 🇬🇧 Siemens</span>
+    <span class="partner-chip"> 🇫🇷 NTI Measure </span>
+    <span class="partner-chip"> 🇩🇪 KIT wbk Insitute</span>
+    <span class="partner-chip"> 🇬🇧 Manufacturing Technology Centre (MTC)</span>
+    <span class="partner-chip"> 🇲🇽 CINEVESTAV </span>
+  </div>
+
+  <div class="collab-invite">
+    <h3>Open to Collaboration</h3>
+    <p>Whether you're an industry engineer looking to solve a specific manufacturing challenge, a technologist exploring AI-driven automation, or a student seeking research supervision — I'd be glad to hear from you. My research thrives at the intersection of academic rigour and real-world application.</p>
+    <div class="collab-areas">
+      <span class="collab-tag">Industry R&amp;D Partnerships</span>
+      <span class="collab-tag">PhD &amp; MEng Supervision</span>
+      <span class="collab-tag">Grant &amp; Funding Collaboration</span>
+      <span class="collab-tag">Consulting &amp; Technical Advisory</span>
+      <span class="collab-tag">Workshop &amp; Knowledge Exchange</span>
+    </div>
+    <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="color:var(--sustain)">Get In Touch</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>I welcome conversations with engineers, researchers, technologists and students. Whether it's a research idea, an industrial challenge, or a collaboration opportunity — feel free to reach out.</p>
+      <div class="contact-detail">
+        <span class="icon">📍</span>
+        <span class="text">Advanced Manufacturing Building, University of Nottingham, Nottingham NG7 2GX, UK</span>
+      </div>
+      <div class="contact-detail">
+        <span class="icon">📧</span>
+        <span class="text"><a href="mailto:sara.wang@nottingham.ac.uk">sara.wang@nottingham.ac.uk</a></span>
+      </div>
+    </div>
+    <div>
+      <div style="background:white;border-radius:10px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <p style="font-size:0.88rem;color:var(--text-light);line-height:1.7;margin-bottom:1.2rem;">I am based at the <strong>University of Nottingham's Advanced Manufacturing Building</strong> — home to the UK's leading facilities for intelligent manufacturing research  <a href="https://www.omnifactory.com"> <strong>Omnifactory</strong></a> .</p>
+        <p style="font-size:0.88rem;color:var(--text-light);line-height:1.7;margin-bottom:1.2rem;">For industry enquiries, research partnerships, or speaking invitations, email is the best way to reach me.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;">
+          <span style="font-size:0.75rem;background:var(--beige);padding:4px 12px;border-radius:4px;color:var(--text);">🎻 Violist </span>
+          <span style="font-size:0.75rem;background:var(--beige);padding:4px 12px;border-radius:4px;color:var(--text);">🌍 EN · 普通话 · Español </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Dr Zi Wang (Sara)</span> · Assistant Professor, University of Nottingham · Intelligent &amp; Sustainable Manufacturing
+</footer>
+
+<script>
+  function showPubs(tab) {
+    document.querySelectorAll('.pub-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function selectStage(idx) {
+    const stages = document.querySelectorAll('.stage');
+    const isOpen = stages[idx].classList.contains('selected');
+    document.querySelectorAll('.pipeline-detail').forEach(p => p.classList.remove('open'));
+    stages.forEach(s => s.classList.remove('selected'));
+    if (!isOpen) {
+      document.getElementById('stage-detail-' + idx).classList.add('open');
+      stages[idx].classList.add('selected');
+    }
+  }
+</script>
+</body>
+</html>
